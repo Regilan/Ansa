@@ -1,8 +1,8 @@
 '''
-------------Defined Functions Indeces------------
-For encrypting: doen(string)		return string
-For derypting : dode(string)		return string
--------------------------------------------------
+---------------------Defined Functions Indeces---------------------
+For hashing: doen(string, True => encryption/ False => decryption)		
+			 return string
+-------------------------------------------------------------------
 '''
 
 #importing the required packages
@@ -28,7 +28,7 @@ def as_text(nparray):
 
 #hash function algorithm to encrypt the given text
 def doen(ips,state):
-	ips=getbest(list(ips)):
+	ips=getbest(list(ips))
 	if len(ips) == len(key):
 		return as_text(np.array(ips)+np.array(key) if state else np.array(ips)-np.array(key))
 	elif len(ips)>len(key):
