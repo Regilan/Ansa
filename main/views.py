@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from Other_functions.functions import doen
 from django.contrib.auth import authenticate, login
-
+from .forms import auth_form
+print('inside the view')
 def mainpageview(request):
+	print('camehere')
 	if request.method=="POST":
 		form = auth_form(request.POST)
 		if form.is_valid():
@@ -10,9 +12,10 @@ def mainpageview(request):
 			if user is not None:
 				login(request, user)
 			else:
-				#another code
+				pass
 		else:
-			#another code
+			pass
 	else:
 		form = auth_form(request.GET)
+		print('Here!')
 		return render(request,'mainpage',{'form':form})

@@ -15,7 +15,7 @@ key=[77, 97, 114, 105, 97, 95, 73, 114, 117, 100, 97, 121, 97, 95, 82, 101, 103,
 def getbest(cvdips):
 	ips=[]
 	for i in cvdips:
-		ips.append(ord(i) if not str(i).isdigit() else i)
+		ips.append(ord(i))
 	return ips
 
 #returns the string from the np-array paramater
@@ -29,9 +29,11 @@ def as_text(nparray):
 #hash function algorithm to encrypt the given text
 def doen(ips,state):
 	ips=getbest(list(ips))
+	print(ips)
 	if len(ips) == len(key):
 		return as_text(np.array(ips)+np.array(key) if state else np.array(ips)-np.array(key))
 	elif len(ips)>len(key):
 		return as_text(np.array(ips[:len(key)])+np.array(key) if state else np.array(ips[:len(key)])-np.array(key))+doen(ips[len(key):],state)
 	else:
+		print(np.array(ips)+np.array(key[:len(ips)]) if state else np.array(ips)-np.array(key[:len(ips)]))
 		return as_text(np.array(ips)+np.array(key[:len(ips)]) if state else np.array(ips)-np.array(key[:len(ips)]))
